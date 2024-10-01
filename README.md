@@ -6,7 +6,7 @@ Hi, ![](https://user-images.githubusercontent.com/18350557/176309783-0785949b-91
 
 * 💼 Looking for a job
 * 🌍 I'm based in Poznan
-* 🖥️ See my [LinkedIn](https://github.com/Shipssv83) profile 
+* 🖥️ See my [LinkedIn](https://www.linkedin.com/in/sergey-shipilov-7262a31b4/) profile 
 * 👾 Chat with IT pros on [Discord](https://discord.com/shipssv_19055)\
 * 📧 Reach me at ships@ukr.net
 * 🧠 I'm learning DevOps Practices
