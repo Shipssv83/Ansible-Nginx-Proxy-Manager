@@ -1,0 +1,49 @@
+---
+- name: include server install play
+  ansible.builtin.import_playbook: server-install.yml
+
+- name: include docker install play
+  ansible.builtin.import_playbook: docker-install.yml
+  
+- name: nginx pm docker install
+  become: true
+  hosts: '{{ host }}'
+  vars:
+    email: 'admin@example.com'
+    nginx_mysql_pass_web: 'changeme'
+    nginx_pm_host_name: 'host_name'
+    nginx_mysql_user: 'your_user_name'
+    nginx_mysql_pass: 'complex_password'
+    nginx_mysql_name: 'your_user_name'
+    nginx_mysql_root_pass: 'complex_password'
+    your_ip: '19.16.11.12'
+
+  roles:
+  - roles/nginx-pm-docker-install
+
+  tasks:
+
+  - name: configure ufw nginx port 81
+    community.general.system.ufw:
+      rule: allow
+      src: '{{ item }}'
+      port: '81'
+      route: true
+      proto: tcp
+      comment: allow nginx port 81
+    loop: '{{ your_ip }}'
+
+  - name: configure ufw allow web
+    community.general.system.ufw:
+      rule: allow
+      port: '{{ item }}'
+      route: true
+      proto: tcp
+      comment: allow web
+    loop:
+      - '80'
+      - '443'
+
+# Email:    admin@example.com
+# Password: changeme
+...

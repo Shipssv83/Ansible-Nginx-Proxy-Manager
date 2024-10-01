@@ -1,0 +1,22 @@
+services:
+
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:${NGINX_VERSION}
+    container_name: nginx-proxy-manager
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    env_file: .env
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    restart: unless-stopped
+
+  db:
+    image: mysql:${MYSQ_VERSION}
+    container_name: npm-db
+    env_file: .env
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    restart: unless-stopped
